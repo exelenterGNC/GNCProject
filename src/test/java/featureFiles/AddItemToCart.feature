@@ -2,9 +2,7 @@ Feature: As a guest user, I want to be able to add an item to cart and checkout 
 
   Scenario: As a guest user, I want to be able to add an item to cart and checkout without logging into account
 
-  Given Navigate to "https://development.gnc.com/"
-
-    And Hover over in "MainPage"
+    Given Hover over in "MainPage"
     | DepartmentsButton |
     And User clicks in "SubCategoryPage"
     | Bestsellers|
@@ -14,10 +12,9 @@ Feature: As a guest user, I want to be able to add an item to cart and checkout 
 
 #    And User scrolls down in "SubCategoryPage"
 #    | ElementToScrollDown |
-    And User randomly click on products in to test "SubCategoryPage"
-#    And User randomly click on products in "SubCategoryPage"
-#    |ProductNameContainer|
 
-  # small updates
+    And User randomly click on products in "SubCategoryPage"
+    |ProductNameContainer|
+
 
   
