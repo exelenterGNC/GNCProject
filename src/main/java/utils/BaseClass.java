@@ -1,9 +1,9 @@
 package utils;
 
 import org.openqa.selenium.WebDriver;
-import pages.LoginPage;
 import pages.MainPage;
 import pages.Page;
+import pages.ProductOrderPage;
 import pages.SubCategoryPage;
 
 import java.util.ArrayList;
@@ -58,8 +58,8 @@ public class BaseClass {
 
     private static void initPageList(){
         list.add(new MainPage());
-        list.add(new LoginPage());
         list.add(new SubCategoryPage());
+        list.add(new ProductOrderPage());
     }
 
 

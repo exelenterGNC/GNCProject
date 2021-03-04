@@ -18,8 +18,12 @@ public interface Page {
 
     public void initMap();
 
+    public void initListMap();
+
     public void scrollToElement(String element);
 
     public void randomClickOnElementInsideListOfWebElement(String ListOfWebElement);
+
+    public void handleDropDownBeforeAddToCart(String ListOfWebElement);
 
 }

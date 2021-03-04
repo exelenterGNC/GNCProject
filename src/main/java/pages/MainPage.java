@@ -24,6 +24,11 @@ public class MainPage extends BasePage implements Page {
     }
 
     @Override
+    public void initListMap() {
+
+    }
+
+    @Override
     public void scrollToElement(String element) {
 
     }
@@ -32,6 +37,8 @@ public class MainPage extends BasePage implements Page {
     public void randomClickOnElementInsideListOfWebElement(String ListOfWebElement) {
 
     }
+
+
 
     @Override
     public void findElementAndClickFunction(String element) {
@@ -52,6 +59,11 @@ public class MainPage extends BasePage implements Page {
     public void hoverOverTheElement(String element) {
 
         moveToElementAndClick(getWebElement(map, element));
+    }
+
+    @Override
+    public void handleDropDownBeforeAddToCart(String ListOfWebElement) {
+
     }
 
 
