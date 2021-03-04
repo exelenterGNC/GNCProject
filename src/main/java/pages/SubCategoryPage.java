@@ -78,4 +78,9 @@ public class SubCategoryPage extends BasePage implements Page {
     @Override
     public void hoverOverTheElement(String element) {
     }
+
+    @Override
+    public void handleDropDownBeforeAddToCart(String ListOfWebElement) {
+
+    }
 }

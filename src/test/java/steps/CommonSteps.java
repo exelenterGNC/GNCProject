@@ -3,6 +3,7 @@ package steps;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -42,9 +43,7 @@ public class CommonSteps extends BaseClass {
         List<String> AllElementsInTheList = dataTable.asList(String.class);
 
         for (int i = 0; i < AllElementsInTheList.size(); i++) {
-
             getPage(page).selectFromDropDown(AllElementsInTheList.get(i));
-
 
         }
     }
@@ -68,5 +67,25 @@ public class CommonSteps extends BaseClass {
         }
 
     }
+
+    @And("User select randomly size or flavor in {string}")
+    public void userSelectRandomlySizeFlavorIn(String page, DataTable dataTable) {
+        List<String> AllElementsInTheList = dataTable.asList(String.class);
+        for (int i = 0; i < AllElementsInTheList.size(); i++) {
+
+            getPage(page).handleDropDownBeforeAddToCart(AllElementsInTheList.get(i));
+        }
+    }
+
+    @And("User waits for {string} seconds")
+    public void userWaitsForSeconds(String seconds) {
+    int time = Integer.parseInt(seconds)*1000;
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

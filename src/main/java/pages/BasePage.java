@@ -52,7 +52,7 @@ public class BasePage {
     //    Click on element method
     protected void clickFunction(WebElement element){
         waitUntilClickable(element);
-        scrollToElement(element);
+//        scrollToElement(element);
         element.click();
 
     }
@@ -68,7 +68,7 @@ public class BasePage {
     }
 
     //    Waiting until element become visible
-    protected void waitUntilVisible(WebElement elementToWait){
+    public void waitUntilVisible(WebElement elementToWait){
 
         wait.until(ExpectedConditions.visibilityOf(elementToWait));
 
@@ -141,13 +141,9 @@ public class BasePage {
     public void selectDropDown(WebElement element) {
         Select select = new Select(element);
         int selectionSize = select.getOptions().size();
-        System.out.println("selectionSize = " + selectionSize);
         Random random = new Random();
         int randomIndex = random.nextInt(selectionSize);
-        System.out.println("randomIndex = " + randomIndex);
         select.selectByIndex(randomIndex);
-        waiting(2000);
-
     }
 
     // Whit this method I am able to select element from dropdown by the name
@@ -162,6 +158,14 @@ public class BasePage {
         Random random = new Random();
         int randomIndex = random.nextInt(list.size());
         list.get(randomIndex).click();
+    }
+
+    public void handleDropDownBeforeAddToCart(List<WebElement> list ){
+
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).getText());
+            selectDropDown(list.get(i));
+        }
     }
 
 
