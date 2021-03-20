@@ -3,10 +3,14 @@ package steps;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.BasePage;
 import utils.BaseClass;
 
 import java.util.List;
@@ -87,5 +91,18 @@ public class CommonSteps extends BaseClass {
         }
     }
 
+    @And("User sends text in {string}")
+    public void userSendsTextIn(String page, DataTable dataTable) {
+        List<List<String>> AllElementsInTheList = dataTable.asLists(String.class);
+        for (int i = 0; i < AllElementsInTheList.size(); i++) {
+            getPage(page).findElementAndSendKeyFunction(AllElementsInTheList.get(i).get(0), AllElementsInTheList.get(i).get(1));
+        }
 
+    }
+
+    @And("User handles the alert for {string} seconds")
+    public void userHandlesTheAlertForSeconds(String seconds) {
+        BasePage basepage = new BasePage();
+        basepage.handleAllert(seconds);
+    }
 }

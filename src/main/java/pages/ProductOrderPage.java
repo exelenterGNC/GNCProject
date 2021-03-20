@@ -10,6 +10,7 @@ import java.util.List;
 public class ProductOrderPage extends BasePage implements Page{
     private HashMap<String, WebElement> map = new HashMap<>();
     private HashMap<String, List<WebElement>> listmap = new HashMap<>();
+
     public ProductOrderPage() {
         PageFactory.initElements(driver, this);
         initMap();

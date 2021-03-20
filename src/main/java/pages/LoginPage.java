@@ -5,30 +5,36 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.HashMap;
-import java.util.List;
 
-public class MainPage extends BasePage implements Page {
+public class LoginPage extends BasePage implements Page {
 
     private HashMap<String, WebElement> map = new HashMap<>();
-    public MainPage() {
+
+    public LoginPage() {
         PageFactory.initElements(driver, this);
         initMap();
     }
 
-    @FindBy(xpath = "//li[@class='lvl1-department']")
-    private WebElement DepartmentsButton;
+    @FindBy(id = "sso_link")
+    private WebElement LoginSignUpButton;
 
-    @FindBy(css = "[title='User: Account']")
-    private WebElement AccountButton;
+    @FindBy(id = "username-input")
+    private WebElement EmailAddressInput;
 
+    @FindBy(css = "[type = 'password']")
+    private WebElement PasswordInput;
 
+    @FindBy(xpath = "//button[@class=\"slds-button slds-button_neutral button-primary\"]")
+    private WebElement LoginButton;
 
 
     @Override
     public void initMap() {
+        map.put("LoginSignUpButton",LoginSignUpButton);
+        map.put("EmailAddressInput",EmailAddressInput);
+        map.put("PasswordInput",PasswordInput);
+        map.put("LoginButton",LoginButton);
 
-        map.put("DepartmentsButton", DepartmentsButton);
-        map.put("AccountButton", AccountButton);
     }
 
     @Override
@@ -50,11 +56,12 @@ public class MainPage extends BasePage implements Page {
 
     @Override
     public void findElementAndClickFunction(String element) {
-
+        clickFunction(getWebElement(map,element));
     }
 
     @Override
     public void findElementAndSendKeyFunction(String element, String text) {
+        sendKeysFunction(getWebElement(map, element), text);
 
     }
 
@@ -66,7 +73,6 @@ public class MainPage extends BasePage implements Page {
     @Override
     public void hoverOverTheElement(String element) {
 
-        moveToElementAndClick(getWebElement(map, element));
     }
 
     @Override

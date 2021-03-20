@@ -2,6 +2,7 @@ Feature: As a guest user, I want to be able to add an item to cart and checkout 
 
   Scenario: As a guest user, I want to be able to add an item to cart and checkout without logging into account
 
+
     Given Hover over in "MainPage"
     | DepartmentsButton |
     And User clicks in "SubCategoryPage"
@@ -23,6 +24,3 @@ Feature: As a guest user, I want to be able to add an item to cart and checkout 
     |AddToCartButton|
     And User waits for "2" seconds
     Then User verifies the product has been added to the cart
-
-
-  

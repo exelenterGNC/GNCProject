@@ -13,8 +13,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class Hooks {
@@ -26,9 +28,18 @@ public class Hooks {
     @Before
     public void start(){
         driver = BaseClass.setUp();
-        driver.get(readProperties("gnc.url"));
+//        driver.get("https://stage.gnc.com/");
+        driver.get(readProperties("gnc.url")); // this line replaces line 31. This way we can change the url from java.resources.config.properties file
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
+
+        // The below code is candidate to be removed
+
+        Set<String> allWindows = driver.getWindowHandles();
+        for(String curWindow : allWindows){
+            driver.switchTo().window(curWindow);
+        }
+
     }
 
     @After
