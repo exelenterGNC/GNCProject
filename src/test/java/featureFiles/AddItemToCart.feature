@@ -18,4 +18,6 @@ Feature: As a guest user, I want to be able to add an item to cart and checkout 
 #    And User randomly click on products in "SubCategoryPage"
 #    |ProductNameContainer|
 
+  #adding this line for testing git connection, can delete this once done
+
   
