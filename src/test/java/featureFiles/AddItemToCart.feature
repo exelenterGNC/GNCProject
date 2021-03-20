@@ -25,4 +25,6 @@ Feature: As a guest user, I want to be able to add an item to cart and checkout 
     Then User verifies the product has been added to the cart
 
 
+  #adding this line for testing git connection, can delete this once done
+
   
