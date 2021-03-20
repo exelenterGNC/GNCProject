@@ -57,8 +57,7 @@ public class MainPage extends BasePage implements Page {
 
     @Override
     public void hoverOverTheElement(String element) {
-
-        moveToElementAndClick(getWebElement(map, element));
+            moveToElementAndClick(getWebElement(map, element));
     }
 
     @Override
