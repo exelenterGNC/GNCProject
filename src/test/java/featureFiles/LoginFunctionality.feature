@@ -1,15 +1,31 @@
 Feature: Login Functionality
-  Scenario: As a user, I should be able to change my password
 
+  Background:
+
+
+  Scenario: As a user, I should be able to change my password
     And User waits for "1" seconds
     Given Hover over in "MainPage"
       | AccountButton |
     And User clicks in "LoginPage"
         |LoginSignUpButton|
-
-    And User handles the alert for "15" seconds
+#    And User handles the alert for "15" seconds
     And User sends text in "LoginPage"
-      | EmailAddressInput | test1dev1@yopmail.com |
-      | PasswordInput     | Test1234!             |
+      | EmailAddressInput | furkathikmatzod@mail.ru |
+      | PasswordInput     | NewJersey2023|
     And User clicks in "LoginPage"
       |LoginButton|
+    When Hover over in "MainPage"
+      | AccountUserButton |
+    And User clicks in "LoginPage"
+      |AccountButton|
+      |ChangePasswordButton|
+    And User sends text in "LoginPage"
+      | NewPasswordInput        | NewJersey2024 |
+      | ConfirmNewPasswordInput | NewJersey2024 |
+    And User clicks in "LoginPage"
+      |CreatePasswordButton|
+    And User waits for "3" seconds
+    Then User verifies the URL is "https://development.gnc.com/"
+
+

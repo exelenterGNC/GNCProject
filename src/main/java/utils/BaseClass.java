@@ -35,9 +35,10 @@ public class BaseClass {
 
         if (threadDriver.get() != null) {
             threadDriver.get().quit();
-            WebDriver driver = threadDriver.get();
-            driver = null;
-            threadDriver.set(driver);
+            threadDriver.set(null);
+//            WebDriver driver = threadDriver.get();
+//            driver = null;
+//            threadDriver.set(driver);
         }
     }
 

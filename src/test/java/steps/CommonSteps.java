@@ -105,4 +105,5 @@ public class CommonSteps extends BaseClass {
         BasePage basepage = new BasePage();
         basepage.handleAllert(seconds);
     }
+
 }

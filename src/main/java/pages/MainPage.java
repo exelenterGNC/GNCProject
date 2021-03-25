@@ -21,6 +21,8 @@ public class MainPage extends BasePage implements Page {
     @FindBy(css = "[title='User: Account']")
     private WebElement AccountButton;
 
+    @FindBy(css = "[title='User: Welcome, test!']")
+    private WebElement AccountUserButton;
 
 
 
@@ -29,6 +31,7 @@ public class MainPage extends BasePage implements Page {
 
         map.put("DepartmentsButton", DepartmentsButton);
         map.put("AccountButton", AccountButton);
+        map.put("AccountUserButton", AccountUserButton );
     }
 
     @Override

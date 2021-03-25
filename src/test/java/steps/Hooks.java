@@ -6,6 +6,10 @@ import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import utils.BaseClass;
 
 import java.io.FileInputStream;
@@ -28,7 +32,6 @@ public class Hooks {
     @Before
     public void start(){
         driver = BaseClass.setUp();
-//        driver.get("https://stage.gnc.com/");
         driver.get(readProperties("gnc.url")); // this line replaces line 31. This way we can change the url from java.resources.config.properties file
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
@@ -50,7 +53,7 @@ public class Hooks {
             scenario.attach(screenshot, "image/png", scenario.getName());
         }
 
-//        BaseClass.tearDown();
+        BaseClass.tearDown();
     }
 
     private String readProperties(String key) {

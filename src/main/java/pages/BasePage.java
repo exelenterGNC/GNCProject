@@ -176,5 +176,12 @@ public class BasePage {
         driver.switchTo().alert().accept();
     }
 
+    public void verifyURL(String URL){
+
+        wait.until(ExpectedConditions.urlToBe(URL));
+        String currentUrl = driver.getCurrentUrl();
+
+        Assert.assertEquals(currentUrl, URL);
+    }
 
 }

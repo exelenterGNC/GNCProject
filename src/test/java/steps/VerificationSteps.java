@@ -2,6 +2,7 @@ package steps;
 
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
+import pages.BasePage;
 import pages.ProductOrderPage;
 import utils.BaseClass;
 
@@ -19,4 +20,11 @@ public class VerificationSteps extends BaseClass {
 
     }
 
+
+    @Then("User verifies the URL is {string}")
+    public void userVerifiesTheURLIs(String URL) {
+        BasePage basepage = new BasePage();
+                basepage.verifyURL(URL);
+
+    }
 }
