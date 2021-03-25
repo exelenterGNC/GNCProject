@@ -1,10 +1,7 @@
 package utils;
 
 import org.openqa.selenium.WebDriver;
-import pages.MainPage;
-import pages.Page;
-import pages.ProductOrderPage;
-import pages.SubCategoryPage;
+import pages.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +35,10 @@ public class BaseClass {
 
         if (threadDriver.get() != null) {
             threadDriver.get().quit();
-            WebDriver driver = threadDriver.get();
-            driver = null;
-            threadDriver.set(driver);
+            threadDriver.set(null);
+//            WebDriver driver = threadDriver.get();
+//            driver = null;
+//            threadDriver.set(driver);
         }
     }
 
@@ -60,6 +58,7 @@ public class BaseClass {
         list.add(new MainPage());
         list.add(new SubCategoryPage());
         list.add(new ProductOrderPage());
+        list.add(new LoginPage());
     }
 
 

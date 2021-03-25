@@ -18,9 +18,20 @@ public class MainPage extends BasePage implements Page {
     @FindBy(xpath = "//li[@class='lvl1-department']")
     private WebElement DepartmentsButton;
 
+    @FindBy(css = "[title='User: Account']")
+    private WebElement AccountButton;
+
+    @FindBy(css = "[title='User: Welcome, test!']")
+    private WebElement AccountUserButton;
+
+
+
     @Override
     public void initMap() {
+
         map.put("DepartmentsButton", DepartmentsButton);
+        map.put("AccountButton", AccountButton);
+        map.put("AccountUserButton", AccountUserButton );
     }
 
     @Override

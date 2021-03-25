@@ -168,5 +168,20 @@ public class BasePage {
         }
     }
 
+    public void handleAllert (String seconds){
+
+        int sec = Integer.parseInt(seconds);
+        WebDriverWait wait =new WebDriverWait(driver, sec);
+        wait.until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
+    }
+
+    public void verifyURL(String URL){
+
+        wait.until(ExpectedConditions.urlToBe(URL));
+        String currentUrl = driver.getCurrentUrl();
+
+        Assert.assertEquals(currentUrl, URL);
+    }
 
 }
