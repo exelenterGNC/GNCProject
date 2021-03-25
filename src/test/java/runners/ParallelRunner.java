@@ -5,11 +5,12 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import utils.BaseClass;
+import steps.Hooks;
+
 
 @CucumberOptions(
 
-        features = {"src/test/java/featureFiles/login/ManageBrand-Edit.feature"},
+        features = {"src/test/java/featureFiles/LoginFunctionalityNegative.feature"},
         glue = {"steps"},
         dryRun = false,
         plugin = {"pretty", "html:target/report/index.html"}
@@ -22,7 +23,7 @@ public class ParallelRunner extends AbstractTestNGCucumberTests {
     @Parameters ("browser")
     public void beforeMethod (@Optional("chrome") String browser){
 
-        BaseClass.browserName.set(browser);
+        Hooks.browserName.set(browser);
 
     }
 

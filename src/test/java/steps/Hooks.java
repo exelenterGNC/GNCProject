@@ -1,48 +1,39 @@
 package steps;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
+import io.cucumber.java.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import utils.BaseClass;
+import utils.DriverWrapper;
+import utils.DriverFactory;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.List;
-import java.util.Locale;
 import java.util.Properties;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+
 public class Hooks {
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    public static final ThreadLocal<String> browserName = new ThreadLocal<>();
 
-    // With hook class I am telling to program to start and to finish
+    private WebDriver driver;
+    private DriverWrapper driverWrapper;
 
-    WebDriver driver;
+    public Hooks(DriverWrapper driver) {
+        this.driverWrapper = driver;
+    }
 
     @Before
     public void start(){
-        driver = BaseClass.setUp();
-        driver.get(readProperties("gnc.url")); // this line replaces line 31. This way we can change the url from java.resources.config.properties file
+        threadDriver.set(DriverFactory.createInstance(browserName.get()));
+        driverWrapper.setDriver(threadDriver.get());
+        driver = threadDriver.get();
+        driver.get(readProperties("gnc.url"));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
-
-        // The below code is candidate to be removed
-
-        Set<String> allWindows = driver.getWindowHandles();
-        for(String curWindow : allWindows){
-            driver.switchTo().window(curWindow);
-        }
-
     }
 
     @After
@@ -53,7 +44,7 @@ public class Hooks {
             scenario.attach(screenshot, "image/png", scenario.getName());
         }
 
-        BaseClass.tearDown();
+        tearDown();
     }
 
     private String readProperties(String key) {
@@ -69,4 +60,14 @@ public class Hooks {
         }
         return propValue;
     }
+
+    public static void tearDown() {
+
+        if (threadDriver.get() != null) {
+            threadDriver.get().quit();
+            threadDriver.remove();
+
+        }
+    }
+
 }
