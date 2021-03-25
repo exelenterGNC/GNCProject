@@ -1,23 +1,24 @@
 package steps;
 
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebDriver;
 import pages.BasePage;
+import utils.DriverWrapper;
 import utils.BaseClass;
 
 import java.util.List;
 
-public class CommonSteps extends BaseClass {
+public class CommonSteps {
+    private WebDriver driver;
+    private BaseClass baseClass;
+    public CommonSteps(DriverWrapper driver) {
+        this.driver = driver.getDriver();
+        baseClass = new BaseClass(this.driver);
+    }
 
-    // Here I will create the steps which are common for the feature files.
+
+
     @And("Hover over in {string}")
     public void hoverOverIn(String page, DataTable dataTable ) {
 
@@ -25,7 +26,7 @@ public class CommonSteps extends BaseClass {
 
         for (int i = 0; i < AllElementsInTheList.size(); i++) {
 
-        getPage(page).hoverOverTheElement(AllElementsInTheList.get(i));
+        baseClass.getPage(page).hoverOverTheElement(AllElementsInTheList.get(i));
 
         }
 
@@ -37,7 +38,7 @@ public class CommonSteps extends BaseClass {
 
         for (int i = 0; i < AllElementsInTheList.size(); i++) {
 
-            getPage(page).findElementAndClickFunction(AllElementsInTheList.get(i));
+            baseClass.getPage(page).findElementAndClickFunction(AllElementsInTheList.get(i));
 
         }
     }
@@ -47,7 +48,7 @@ public class CommonSteps extends BaseClass {
         List<String> AllElementsInTheList = dataTable.asList(String.class);
 
         for (int i = 0; i < AllElementsInTheList.size(); i++) {
-            getPage(page).selectFromDropDown(AllElementsInTheList.get(i));
+            baseClass.getPage(page).selectFromDropDown(AllElementsInTheList.get(i));
 
         }
     }
@@ -58,7 +59,7 @@ public class CommonSteps extends BaseClass {
 
         for (int i = 0; i < AllElementsInTheList.size(); i++) {
 
-            getPage(page).scrollToElement(AllElementsInTheList.get(i));
+            baseClass.getPage(page).scrollToElement(AllElementsInTheList.get(i));
 
         }
     }
@@ -67,7 +68,7 @@ public class CommonSteps extends BaseClass {
     public void userRandomlyClickOnProductsIn(String page, DataTable dataTable) {
         List<String> AllElementsInTheList = dataTable.asList(String.class);
         for (int i = 0; i < AllElementsInTheList.size(); i++) {
-            getPage(page).randomClickOnElementInsideListOfWebElement(AllElementsInTheList.get(i));
+            baseClass.getPage(page).randomClickOnElementInsideListOfWebElement(AllElementsInTheList.get(i));
         }
 
     }
@@ -77,7 +78,7 @@ public class CommonSteps extends BaseClass {
         List<String> AllElementsInTheList = dataTable.asList(String.class);
         for (int i = 0; i < AllElementsInTheList.size(); i++) {
 
-            getPage(page).handleDropDownBeforeAddToCart(AllElementsInTheList.get(i));
+            baseClass.getPage(page).handleDropDownBeforeAddToCart(AllElementsInTheList.get(i));
         }
     }
 
@@ -95,14 +96,14 @@ public class CommonSteps extends BaseClass {
     public void userSendsTextIn(String page, DataTable dataTable) {
         List<List<String>> AllElementsInTheList = dataTable.asLists(String.class);
         for (int i = 0; i < AllElementsInTheList.size(); i++) {
-            getPage(page).findElementAndSendKeyFunction(AllElementsInTheList.get(i).get(0), AllElementsInTheList.get(i).get(1));
+            baseClass.getPage(page).findElementAndSendKeyFunction(AllElementsInTheList.get(i).get(0), AllElementsInTheList.get(i).get(1));
         }
 
     }
 
     @And("User handles the alert for {string} seconds")
     public void userHandlesTheAlertForSeconds(String seconds) {
-        BasePage basepage = new BasePage();
+        BasePage basepage = new BasePage(driver);
         basepage.handleAllert(seconds);
     }
 
