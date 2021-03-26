@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,7 +11,8 @@ import java.util.List;
 public class MainPage extends BasePage implements Page {
 
     private HashMap<String, WebElement> map = new HashMap<>();
-    public MainPage() {
+    public MainPage(WebDriver driver) {
+        super(driver);
         PageFactory.initElements(driver, this);
         initMap();
     }
@@ -18,9 +20,20 @@ public class MainPage extends BasePage implements Page {
     @FindBy(xpath = "//li[@class='lvl1-department']")
     private WebElement DepartmentsButton;
 
+    @FindBy(css = "[title='User: Account']")
+    private WebElement AccountButton;
+
+    @FindBy(css = "[title='User: Welcome, test!']")
+    private WebElement AccountUserButton;
+
+
+
     @Override
     public void initMap() {
+
         map.put("DepartmentsButton", DepartmentsButton);
+        map.put("AccountButton", AccountButton);
+        map.put("AccountUserButton", AccountUserButton );
     }
 
     @Override
@@ -57,8 +70,7 @@ public class MainPage extends BasePage implements Page {
 
     @Override
     public void hoverOverTheElement(String element) {
-
-        moveToElementAndClick(getWebElement(map, element));
+            moveToElementAndClick(getWebElement(map, element));
     }
 
     @Override
