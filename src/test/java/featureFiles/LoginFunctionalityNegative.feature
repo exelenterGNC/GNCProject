@@ -8,7 +8,7 @@ Background:
     |LoginSignUpButton|
   And User sends text in "LoginPage"
     | EmailAddressInput | furkathikmatzod@mail.ru |
-    | PasswordInput     | NewJersey2026|
+    | PasswordInput     | NewJersey2024|
   And User clicks in "LoginPage"
     |LoginButton|
 
@@ -27,13 +27,13 @@ Scenario Outline: As a user, I should not be able to change my password
   | CreatePasswordButton |
   Examples:
   | New Password  | Repeat New Password |
-  | Manual1       | Manual1             |
-  | TEST11111     | TEST11111           |
+#  | Manual1       | Manual1             |
+#  | TEST11111     | TEST11111           |
 #  | test22222     | test22222           |
 #  | Nonumbershere | Nonumbershere       |
 #  | lowercase     | lowercase           |
 #  | UPPERCASE     | UPPERCASE           |
 #  | 987654321     | 987654321           |
-#  | TEST11111     | TEST11111           |
-#  | NewJersey2024 | NewJersey2024       |
-#  | NewJersey2021 | NewJersey2020       |
+  | TEST11111     | TEST11111           |
+  | NewJersey2024 | NewJersey2024       |
+  | NewJersey2021 | NewJersey2020       |

@@ -12,7 +12,7 @@ Feature: Login Functionality
 #    And User handles the alert for "15" seconds
     And User sends text in "LoginPage"
       | EmailAddressInput | furkathikmatzod@mail.ru |
-      | PasswordInput     | NewJersey2025|
+      | PasswordInput     | NewJersey2026|
     And User clicks in "LoginPage"
       |LoginButton|
     When Hover over in "MainPage"
@@ -21,8 +21,8 @@ Feature: Login Functionality
       |AccountButton|
       |ChangePasswordButton|
     And User sends text in "LoginPage"
-      | NewPasswordInput        | NewJersey2026 |
-      | ConfirmNewPasswordInput | NewJersey2026 |
+      | NewPasswordInput        | NewJersey2027 |
+      | ConfirmNewPasswordInput | NewJersey2027 |
     And User clicks in "LoginPage"
       |CreatePasswordButton|
     And User waits for "3" seconds
