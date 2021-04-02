@@ -8,3 +8,4 @@ Feature: Brand Feature
     Then Verify the count of images equals to 10
     And  Verify the images are in SVG format
     And Verify images have the link
+    Then Click on each images and verify the URL is same as image link
