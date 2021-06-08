@@ -44,7 +44,7 @@ public class Hooks {
             scenario.attach(screenshot, "image/png", scenario.getName());
         }
 
-        tearDown();
+        //tearDown();
     }
 
     private String readProperties(String key) {

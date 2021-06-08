@@ -26,6 +26,9 @@ public class MainPage extends BasePage implements Page {
     @FindBy(css = "[title='User: Welcome, test!']")
     private WebElement AccountUserButton;
 
+    @FindBy(xpath = "//li[@class='lvl1-brands']")
+    private WebElement BrandsButton;
+
 
 
     @Override
@@ -34,6 +37,7 @@ public class MainPage extends BasePage implements Page {
         map.put("DepartmentsButton", DepartmentsButton);
         map.put("AccountButton", AccountButton);
         map.put("AccountUserButton", AccountUserButton );
+        map.put("BrandsButton", BrandsButton);
     }
 
     @Override
@@ -70,8 +74,7 @@ public class MainPage extends BasePage implements Page {
 
     @Override
     public void hoverOverTheElement(String element) {
-
-        moveToElementAndClick(getWebElement(map, element));
+            moveToElementAndClick(getWebElement(map, element));
     }
 
     @Override
