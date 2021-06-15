@@ -20,7 +20,7 @@ public class ProductOrderPage extends BasePage implements Page{
     }
 
     @FindBy(xpath = "//select[@class=\"form-control variation-select\"]")
-    private List<WebElement> flaworDropdown;
+    private List<WebElement> flavorDropdown;
 
     @FindBy (id = "Quantity")
     private WebElement Quantity;
@@ -35,7 +35,7 @@ public class ProductOrderPage extends BasePage implements Page{
     public WebElement cartIcon;
 
     @FindBy (xpath = "//div[@class=\"sku\"]/span[@class=\"value\"]")
-    public WebElement ItemIDInTheCart;
+    public WebElement ItemIdInTheCart;
 
     @Override
     public void findElementAndClickFunction(String element) {
@@ -65,7 +65,7 @@ public class ProductOrderPage extends BasePage implements Page{
 
     @Override
     public void initListMap() {
-        listmap.put("flaworDropdown", flaworDropdown);
+        listmap.put("flaworDropdown", flavorDropdown);
     }
 
     @Override

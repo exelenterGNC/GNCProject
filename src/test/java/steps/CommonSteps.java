@@ -20,7 +20,7 @@ public class CommonSteps {
 
 
     @And("Hover over in {string}")
-    public void hoverOverIn(String page, DataTable dataTable ) {
+    public void hoverOver(String page, DataTable dataTable ) {
 
         List<String> AllElementsInTheList = dataTable.asList(String.class);
 
@@ -37,7 +37,7 @@ public class CommonSteps {
         List<String> AllElementsInTheList = dataTable.asList(String.class);
 
         for (int i = 0; i < AllElementsInTheList.size(); i++) {
-
+    
             baseClass.getPage(page).findElementAndClickFunction(AllElementsInTheList.get(i));
 
         }

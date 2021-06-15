@@ -2,7 +2,6 @@ package steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -33,7 +32,7 @@ public class VerificationSteps {
 
         String[] itemID = productOrderPage.ItemID.getText().split("#");
         productOrderPage.cartIcon.click();
-        String itemIDInTheCart = productOrderPage.ItemIDInTheCart.getText();
+        String itemIDInTheCart = productOrderPage.ItemIdInTheCart.getText();
         Assert.assertEquals(itemID[1],itemIDInTheCart);
 
     }
