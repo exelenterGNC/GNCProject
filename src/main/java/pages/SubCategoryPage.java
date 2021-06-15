@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -12,7 +13,8 @@ public class SubCategoryPage extends BasePage implements Page {
 
     private HashMap<String, WebElement> map = new HashMap<>();
     private HashMap<String, List<WebElement>> listmap = new HashMap<>();
-    public SubCategoryPage() {
+    public SubCategoryPage(WebDriver driver) {
+        super(driver);
         PageFactory.initElements(driver, this);
         initMap();
         initListMap();
@@ -77,5 +79,10 @@ public class SubCategoryPage extends BasePage implements Page {
 
     @Override
     public void hoverOverTheElement(String element) {
+    }
+
+    @Override
+    public void handleDropDownBeforeAddToCart(String ListOfWebElement) {
+
     }
 }

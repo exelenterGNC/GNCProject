@@ -23,12 +23,11 @@ public class BasePage {
     // I will run the driver here
     // I will use this class for all common methods
 
-
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    public BasePage() {
-        this.driver = BaseClass.setUp();
+    public BasePage(WebDriver webdriver) {
+        this.driver = webdriver;
         wait = new WebDriverWait(driver, 15);
     }
 
@@ -52,7 +51,7 @@ public class BasePage {
     //    Click on element method
     protected void clickFunction(WebElement element){
         waitUntilClickable(element);
-        scrollToElement(element);
+//        scrollToElement(element);
         element.click();
 
     }
@@ -68,7 +67,7 @@ public class BasePage {
     }
 
     //    Waiting until element become visible
-    protected void waitUntilVisible(WebElement elementToWait){
+    public void waitUntilVisible(WebElement elementToWait){
 
         wait.until(ExpectedConditions.visibilityOf(elementToWait));
 
@@ -110,7 +109,7 @@ public class BasePage {
 
     //Hover over and click method
     protected void moveToElementAndClick(WebElement element){
-        Actions actions = new Actions(BaseClass.setUp());
+        Actions actions = new Actions(driver);
         scrollToElement(element);
         actions.moveToElement(element).click().perform();
     }
@@ -141,13 +140,9 @@ public class BasePage {
     public void selectDropDown(WebElement element) {
         Select select = new Select(element);
         int selectionSize = select.getOptions().size();
-        System.out.println("selectionSize = " + selectionSize);
         Random random = new Random();
         int randomIndex = random.nextInt(selectionSize);
-        System.out.println("randomIndex = " + randomIndex);
         select.selectByIndex(randomIndex);
-        waiting(1000);
-
     }
 
     // Whit this method I am able to select element from dropdown by the name
@@ -164,5 +159,28 @@ public class BasePage {
         list.get(randomIndex).click();
     }
 
+    public void handleDropDownBeforeAddToCart(List<WebElement> list ){
+
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).getText());
+            selectDropDown(list.get(i));
+        }
+    }
+
+    public void handleAllert (String seconds){
+
+        int sec = Integer.parseInt(seconds);
+        WebDriverWait wait =new WebDriverWait(driver, sec);
+        wait.until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
+    }
+
+    public void verifyURL(String URL){
+
+        wait.until(ExpectedConditions.urlToBe(URL));
+        String currentUrl = driver.getCurrentUrl();
+
+        Assert.assertEquals(currentUrl, URL);
+    }
 
 }

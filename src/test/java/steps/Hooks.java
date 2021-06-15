@@ -1,22 +1,39 @@
 package steps;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
+import io.cucumber.java.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import utils.BaseClass;
+import utils.DriverWrapper;
+import utils.DriverFactory;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
 
 public class Hooks {
+    private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    public static final ThreadLocal<String> browserName = new ThreadLocal<>();
 
-    // With hook class I am telling to program to start and to finish
+    private WebDriver driver;
+    private DriverWrapper driverWrapper;
 
-    WebDriver driver;
+    public Hooks(DriverWrapper driver) {
+        this.driverWrapper = driver;
+    }
 
     @Before
     public void start(){
-        driver = BaseClass.setUp();
+        threadDriver.set(DriverFactory.createInstance(browserName.get()));
+        driverWrapper.setDriver(threadDriver.get());
+        driver = threadDriver.get();
+        driver.get(readProperties("gnc.url"));
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS) ;
     }
 
     @After
@@ -27,9 +44,30 @@ public class Hooks {
             scenario.attach(screenshot, "image/png", scenario.getName());
         }
 
-//        BaseClass.tearDown();
+        //tearDown();
     }
 
+    private String readProperties(String key) {
+        Properties prop = new Properties();
+        String propValue = "";
+        URL resourcePath = Hooks.class.getClassLoader().getResource("config.properties");
+        System.out.println("resourcePath = " + resourcePath);
 
+        try(InputStream input = new FileInputStream(resourcePath.getPath())){
+            prop.load(input);
+            propValue =  prop.getProperty(key);
+        }catch(IOException ex){
+        }
+        return propValue;
+    }
+
+    public static void tearDown() {
+
+        if (threadDriver.get() != null) {
+            threadDriver.get().quit();
+            threadDriver.remove();
+
+        }
+    }
 
 }
