@@ -75,10 +75,10 @@ public class BasePage {
 
 
     //    WaitForClickable
-    protected void waitUntilClickable(WebElement elmentToWait){
+    protected void waitUntilClickable(WebElement elementToWait){
 
 //        wait until clickable is working as if the element is not visible
-        wait.until(ExpectedConditions.elementToBeClickable(elmentToWait));
+        wait.until(ExpectedConditions.elementToBeClickable(elementToWait));
     }
 
     //  Verify element is contains specific text

@@ -34,7 +34,7 @@ public class CommonSteps {
 
     }
 
-    //This should be inside PreWorkoutSupplementsPage
+    //This should be inside PreWorkoutSupplementsPage ?
     @Given("user selects a product from the list in {string}")
     public void user_selects_a_product_from_the_list_in(String page, DataTable dataTable) {
         List<String> AllElementsInTheList = dataTable.asList(String.class);
@@ -68,7 +68,7 @@ public class CommonSteps {
 
         for (int i = 0; i < AllElementsInTheList.size(); i++) {
 
-            baseClass.getPage(page).hoverOverTheElement(AllElementsInTheList.get(i));
+            baseClass.getPage(page).findElementAndClickFunction(AllElementsInTheList.get(i));
 
         }
 

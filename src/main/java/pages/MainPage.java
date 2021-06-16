@@ -28,8 +28,8 @@ public class MainPage extends BasePage implements Page {
     @FindBy(xpath = "//li[@class='lvl1-brands']")
     private WebElement BrandsButton;
 
-    @FindBy(xpath = "//li[@class='lvl3-pre-workout-supplements-2']")
-    private WebElement preWorkOutSupplementsLink;
+    @FindBy(xpath = "//a[@data-cgid='pre-workout-supplements-2']")
+    private WebElement preWorkoutSupplementsLink;
 
 
 
@@ -40,7 +40,7 @@ public class MainPage extends BasePage implements Page {
         map.put("AccountButton", AccountButton);
         map.put("AccountUserButton", AccountUserButton );
         map.put("BrandsButton", BrandsButton);
-        map.put("preWorkOutSupplementsLink", preWorkOutSupplementsLink);
+        map.put("preWorkoutSupplementsLink", preWorkoutSupplementsLink);
     }
 
     @Override
@@ -62,12 +62,12 @@ public class MainPage extends BasePage implements Page {
 
     @Override
     public void findElementAndClickFunction(String element) {
-
+        clickFunction(getWebElement(map,element));
     }
 
     @Override
     public void findElementAndSendKeyFunction(String element, String text) {
-
+        sendKeysFunction(getWebElement(map, element), text);
     }
 
     @Override

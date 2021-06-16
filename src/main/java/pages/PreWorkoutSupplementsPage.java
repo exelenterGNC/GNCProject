@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class PreWorkoutSupplementsPage extends BasePage implements Page {
     private HashMap<String, WebElement> map = new HashMap<>();
@@ -18,6 +17,9 @@ public class PreWorkoutSupplementsPage extends BasePage implements Page {
 
     @FindBy(xpath = "//span[contains(text(),'UNBREAKABLE PERFORMANCE')]")
     private WebElement unbreakablePerformanceProduct;
+//    @FindBy(xpath = "//a[@data-cgid='pre-workout-supplements-2']")
+//    private WebElement preWorkoutSupplementsLink;
+
 
     @Override
     public void initMap() {
