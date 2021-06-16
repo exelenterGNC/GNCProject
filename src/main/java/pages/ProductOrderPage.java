@@ -65,7 +65,7 @@ public class ProductOrderPage extends BasePage implements Page{
 
     @Override
     public void initListMap() {
-        listmap.put("flaworDropdown", flavorDropdown);
+        listmap.put("flavorDropdown", flavorDropdown);
     }
 
     @Override

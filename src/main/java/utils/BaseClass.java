@@ -37,6 +37,7 @@ public class BaseClass {
         list.add(new ProductOrderPage(webdriver));
         list.add(new LoginPage(webdriver));
         list.add(new BrandPage(webdriver));
+        list.add(new PreWorkoutSupplementsPage(webdriver));
     }
 
 

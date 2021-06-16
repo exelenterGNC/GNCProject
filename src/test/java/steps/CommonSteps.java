@@ -1,8 +1,11 @@
 package steps;
 
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.And;
+import io.cucumber.java.en.*;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import pages.BasePage;
 import utils.DriverWrapper;
 import utils.BaseClass;
@@ -18,6 +21,58 @@ public class CommonSteps {
     }
 
 
+    //This should be inside MainPage
+    @Given("user is on {string} and clicks on")
+    public void user_is_on_and_clicks_on(String page, DataTable dataTable) {
+        List<String> AllElementsInTheList = dataTable.asList(String.class);
+
+        for (int i = 0; i < AllElementsInTheList.size(); i++) {
+
+            baseClass.getPage(page).hoverOverTheElement(AllElementsInTheList.get(i));
+
+        }
+
+    }
+
+    //This should be inside PreWorkoutSupplementsPage
+    @Given("user selects a product from the list in {string}")
+    public void user_selects_a_product_from_the_list_in(String page, DataTable dataTable) {
+        List<String> AllElementsInTheList = dataTable.asList(String.class);
+
+        for (int i = 0; i < AllElementsInTheList.size(); i++) {
+
+            baseClass.getPage(page).findElementAndClickFunction(AllElementsInTheList.get(i));
+
+        }
+    }
+
+    // Scroll to WebElement method
+    protected void scrollToElement(WebElement elementToScroll){
+//        JavascriptExecutor js = ((JavascriptExecutor) driver);
+//        js.executeScript("arguments[0].scrollIntoView();", elementToScroll);
+
+        JavascriptExecutor js = ((JavascriptExecutor) driver);
+        js.executeScript("arguments[0].scrollIntoView(true);", elementToScroll);
+    }
+
+    //Hover over and click method
+    protected void moveToElementAndClick(WebElement element){
+        Actions actions = new Actions(driver);
+        scrollToElement(element);
+        actions.moveToElement(element).click().perform();
+    }
+
+    @Given("user hovers on the {string} over the")
+    public void user_hovers_on_the_over_the(String page, DataTable dataTable) {
+        List<String> AllElementsInTheList = dataTable.asList(String.class);
+
+        for (int i = 0; i < AllElementsInTheList.size(); i++) {
+
+            baseClass.getPage(page).hoverOverTheElement(AllElementsInTheList.get(i));
+
+        }
+
+    }
 
     @And("Hover over in {string}")
     public void hoverOver(String page, DataTable dataTable ) {
@@ -37,7 +92,7 @@ public class CommonSteps {
         List<String> AllElementsInTheList = dataTable.asList(String.class);
 
         for (int i = 0; i < AllElementsInTheList.size(); i++) {
-    
+
             baseClass.getPage(page).findElementAndClickFunction(AllElementsInTheList.get(i));
 
         }

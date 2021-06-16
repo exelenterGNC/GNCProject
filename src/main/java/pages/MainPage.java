@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class MainPage extends BasePage implements Page {
 
@@ -18,7 +17,7 @@ public class MainPage extends BasePage implements Page {
     }
 
     @FindBy(xpath = "//li[@class='lvl1-department']")
-    private WebElement DepartmentsButton;
+    private WebElement DepartmentsMenuLink;
 
     @FindBy(css = "[title='User: Account']")
     private WebElement AccountButton;
@@ -29,15 +28,19 @@ public class MainPage extends BasePage implements Page {
     @FindBy(xpath = "//li[@class='lvl1-brands']")
     private WebElement BrandsButton;
 
+    @FindBy(xpath = "//li[@class='lvl3-pre-workout-supplements-2']")
+    private WebElement preWorkOutSupplementsLink;
+
 
 
     @Override
     public void initMap() {
 
-        map.put("DepartmentsButton", DepartmentsButton);
+        map.put("DepartmentsMenuLink", DepartmentsMenuLink);
         map.put("AccountButton", AccountButton);
         map.put("AccountUserButton", AccountUserButton );
         map.put("BrandsButton", BrandsButton);
+        map.put("preWorkOutSupplementsLink", preWorkOutSupplementsLink);
     }
 
     @Override
